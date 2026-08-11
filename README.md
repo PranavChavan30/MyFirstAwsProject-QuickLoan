@@ -2,7 +2,7 @@
 
 ###  Infrastructure Setup
 
-* **VPC:** Custom VPC
+* **VPC:** Custom VPC ('project-vpc' with 10.20.0.0/16)
 * **Subnets:** 3 Public subnets and 1 Private subnet
 * **Route Tables:** Public Route Table connected with 2 Public subnets
 * **Gateways:** Internet Gateway (IGW) & NAT Gateway (NGW)
@@ -97,7 +97,14 @@ CREATE TABLE applications (
 
 Use code with caution.
 
-### 4. DNS Mapping & Nginx Reverse Proxy (No-IP)
+### 4. Cloud Administration, AMI & Auto Scaling Setup
+
+* **AMI Creation:** Created a Custom Amazon Machine Image (AMI) from the configured App-Server to preserve Nginx, PHP, and application code configuration.
+* **Launch Template:** Built a reusable template utilizing the custom AMI for standardized instance launches.
+* **Target Group & ALB:** Configured Target Groups and deployed an AWS Application Load Balancer (ALB) for dynamic load distribution.
+* **Auto Scaling Group (ASG):** Bound the custom AMI template with ASG to automate scale-up and scale-down processes based on active traffic load.
+
+### 5. DNS Mapping & Nginx Reverse Proxy (No-IP)
 
 * Configured A record on noip.com: loan.ddns.net pointing to pub-ip
 
